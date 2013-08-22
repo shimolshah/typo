@@ -35,7 +35,7 @@ class Admin::ContentController < Admin::BaseController
       return
     end
     @edit = true
-debugger
+# debugger
     new_or_edit
   end
 
