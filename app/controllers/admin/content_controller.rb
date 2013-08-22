@@ -44,9 +44,7 @@ class Admin::ContentController < Admin::BaseController
     if source_article != nil
       curr_article.body = curr_article.body + "\r\n" + source_article.body
       
-      source_article.comments.each do |comment|
-        curr_article.comments.create(comment)
-      end
+      current_article.comments << source_article.comments
 # debugger
       
       curr_article.save!
