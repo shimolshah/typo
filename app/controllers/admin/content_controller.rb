@@ -43,7 +43,7 @@ class Admin::ContentController < Admin::BaseController
       curr_article = Article.find_by_id(curr_id)
       source_article = Article.find_by_id(source_id)
     
-      if source_article != nil
+      if source_article != nil do
         curr_article.body = curr_article.body + "\r\n" + source_article.body
       
         # current_article.comments << source_article.comments
