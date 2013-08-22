@@ -148,7 +148,7 @@
     </ul>
   </div>
 
-<% if @edit==true && current_user.login == "admin" %>
+<% if @edit==true && current_user.profile.label == "admin" %>
   <h3>Merge Articles</h3>
   <%= label_tag :merge_id, "Article ID" %>
   <%= text_field_tag "merge_with", %>

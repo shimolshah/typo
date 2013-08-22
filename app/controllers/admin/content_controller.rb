@@ -12,6 +12,7 @@ class Admin::ContentController < Admin::BaseController
   end
 
   def index
+#debugger
     @search = params[:search] ? params[:search] : {}
     
     @articles = Article.search_with_pagination(@search, {:page => params[:page], :per_page => this_blog.admin_display_elements})
@@ -42,9 +43,11 @@ class Admin::ContentController < Admin::BaseController
     
     if source_article != nil
       curr_article.body = curr_article.body + "\r\n" + source_article.body
-      curr_article.comments = curr_article.comments + source_article.comments
-
-#      debugger
+      
+      source_article.comments.each do |comment|
+        curr_article.comments.create(comment)
+      end
+# debugger
       
       curr_article.save!
       source_article.destroy
