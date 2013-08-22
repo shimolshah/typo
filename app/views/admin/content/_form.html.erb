@@ -146,7 +146,26 @@
     <ul id='attachments' class='inputs-list'>
       <%= render 'admin/content/attachment', { :attachment_num => 1, :hidden => false } -%>
     </ul>
-  </div>    
+  </div>
+
+<% if @edit==true && current_user.login == "admin" %>
+  <h3>Merge Articles</h3>
+  <%= label_tag :merge_id, "Article ID" %>
+  <%= text_field_tag "merge_with", %>
+
+
+  <a href='#' onclick='return check()' class='btn info'>Merge</a>
+
+  <script type='text/javascript'>
+    function check()
+    {
+      var current_article_id = <%= @article.id %>
+      var source_article_id = document.getElementById('merge_with').value
+      window.location.replace("/admin/content/merge/" + current_article_id + "/" + source_article_id);
+    }
+  </script>
+
+<% end %>
   </div>
 
 </div>

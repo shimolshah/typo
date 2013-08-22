@@ -43,6 +43,19 @@ Given /^the blog is set up$/ do
                 :state => 'active'})
 end
 
+And /the following Users exist/ do |users_table|
+#debugger
+  users_table.hashes.each do |user|
+    User.create!(user)
+  end
+end
+
+And /the following Articles exist/ do |articles_table|
+  articles_table.hashes.each do |article|
+    Article.create!(article)
+  end
+end
+
 And /^I am logged into the admin panel$/ do
   visit '/accounts/login'
   fill_in 'user_login', :with => 'admin'
@@ -54,6 +67,21 @@ And /^I am logged into the admin panel$/ do
     assert page.has_content?('Login successful')
   end
 end
+
+And /^I am logged in as (.+) with password (.+)$/ do |user, pwd|
+  visit '/accounts/login'
+
+  fill_in 'user_login', :with => user
+  fill_in 'user_password', :with => pwd
+  click_button 'Login'
+
+  if page.respond_to? :should
+    page.should have_content('Login successful')
+  else
+    assert page.has_content?('Login successful')
+  end
+end
+
 
 # Single-line step scoper
 When /^(.*) within (.*[^:])$/ do |step, parent|
