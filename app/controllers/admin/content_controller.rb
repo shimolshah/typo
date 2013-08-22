@@ -43,15 +43,18 @@ class Admin::ContentController < Admin::BaseController
       curr_article = Article.find_by_id(curr_id)
       source_article = Article.find_by_id(source_id)
     
+#debugger
       if source_article != nil
         curr_article.body = curr_article.body + "\r\n" + source_article.body
-      
-        # current_article.comments << source_article.comments
+#debugger
+        # curr_article.comments << source_article.comments
         if source_article.comments != nil
           source_article.comments.each do |comment|
+#debugger
             target_comment = comment.clone
-            comment.destroy
-            current_article.comments << target_comment
+            # comment.destroy
+            curr_article.comments << target_comment
+#debugger
           end
           
         end
