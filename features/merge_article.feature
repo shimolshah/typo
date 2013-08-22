@@ -26,5 +26,6 @@ Feature: Merge Articles
     Then I should see "Merge Articles"
     When I fill in "merge_with" with "11"
     And I press "Merge"
+    When I follow "Some title1"
     Then I should see "some text1"
     And I should see "some text2"

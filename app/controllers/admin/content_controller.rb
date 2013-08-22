@@ -27,6 +27,23 @@ class Admin::ContentController < Admin::BaseController
     new_or_edit
   end
 
+  def merge
+    curr_id = params["curr_id"]
+    source_id = params["source_id"]
+    debugger
+    
+    curr_article = Article.find_by_id(curr_id)
+    source_article = Article.find_by_id(source_id)
+    
+    if source_article != nil
+      curr_article.body = curr_article.body + "\r\n" + source_article.body
+      curr_article.save!
+      source_article.destroy
+    end
+    debugger
+    redirect_to :action => 'index'
+  end
+
   def edit
     @article = Article.find(params[:id])
     unless @article.access_by? current_user
