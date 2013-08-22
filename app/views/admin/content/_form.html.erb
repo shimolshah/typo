@@ -154,8 +154,11 @@
   <%= text_field_tag "merge_with", %>
 
 
-  <a href='#' onclick='return check()' class='btn info'>Merge</a>
-  <!-- <button onclick="return check()" class='btn info'>Merge</button>  -->
+  <!-- <a href='#' onclick='return check()' class='btn info'>Merge</a> -->
+<!--   <input type="button" onclick="window.location='/admin/content/merge/' + <%= @article.id %> + '/' + document.getElementById('merge_with').value" value="Merge" class='btn info'></button> -->
+<!-- <input type="button" onclick="return check()" value="Merge" class='btn info'></button> -->
+      <!-- <input id='merge' type="submit" value="merge" name="merge" class='btn info' /> -->
+      <input id='Merge' type="submit" value="Merge" class='btn info' />
 
   <script type='text/javascript'>
     function check()

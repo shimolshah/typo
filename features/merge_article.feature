@@ -24,7 +24,7 @@ Feature: Merge Articles
     And I am on the all articles page
     And I follow "Some title1"
     Then I should see "Merge Articles"
-    When I fill in "merge_with" with "11"
+    When I fill in "merge_with" with "4"
     And I press "Merge"
     When I follow "Some title1"
     Then I should see "some text1"

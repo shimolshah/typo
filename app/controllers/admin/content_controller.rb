@@ -24,13 +24,18 @@ class Admin::ContentController < Admin::BaseController
   end
 
   def new
-    new_or_edit
+# debugger
+    if params["merge_with"] != nil
+      merge
+    else
+      new_or_edit
+    end
   end
 
   def merge
-    curr_id = params["curr_id"]
-    source_id = params["source_id"]
-#    debugger
+    curr_id = params["id"]
+    source_id = params["merge_with"]
+# debugger
     
     curr_article = Article.find_by_id(curr_id)
     source_article = Article.find_by_id(source_id)
@@ -40,11 +45,12 @@ class Admin::ContentController < Admin::BaseController
       curr_article.save!
       source_article.destroy
     end
-#    debugger
+# debugger
     redirect_to :action => 'index'
   end
 
   def edit
+# debugger
     @article = Article.find(params[:id])
     unless @article.access_by? current_user
       redirect_to :action => 'index'
