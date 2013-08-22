@@ -30,7 +30,7 @@ class Admin::ContentController < Admin::BaseController
   def merge
     curr_id = params["curr_id"]
     source_id = params["source_id"]
-    debugger
+#    debugger
     
     curr_article = Article.find_by_id(curr_id)
     source_article = Article.find_by_id(source_id)
@@ -40,7 +40,7 @@ class Admin::ContentController < Admin::BaseController
       curr_article.save!
       source_article.destroy
     end
-    debugger
+#    debugger
     redirect_to :action => 'index'
   end
 
