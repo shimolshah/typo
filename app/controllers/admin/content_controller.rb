@@ -47,6 +47,14 @@ class Admin::ContentController < Admin::BaseController
         curr_article.body = curr_article.body + "\r\n" + source_article.body
       
         # current_article.comments << source_article.comments
+        if source_article.comments != nil
+          source_article.comments.each do |comment|
+            target_comment = comment.clone
+            comment.destroy
+            current_article.comments << target_comment
+          end
+          
+        end
 # debugger
       
         curr_article.save!
